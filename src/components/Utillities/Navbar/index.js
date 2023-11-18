@@ -14,8 +14,7 @@ const Navbar = () => {
 		if (event.key === "Enter" || event.type === "click") {
 			event.preventDefault()
 			const keyword = searchRef.current.value
-			router.push(`/search/${keyword}`)
-			if (!keyword === Nan) {
+			if (keyword.length > 0) {
 				router.push(`/search/${keyword}`)
 			}
 		}
