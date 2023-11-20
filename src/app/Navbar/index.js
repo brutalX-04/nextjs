@@ -9,21 +9,20 @@ import { useRef } from "react"
 const Navbar = () => {
 	const searchRef = useRef()
 	const router = useRouter()
-
+	
 	const handlesearch = (event) => {
+		const keyword = searchRef.current.value
 		if (event.key === "Enter" || event.type === "click") {
 			event.preventDefault()
-			const keyword = searchRef.current.value
-			if (keyword.length > 0) {
-				router.push(`/search/${keyword}`)
-			}
+			if (keyword.trim() == "") return
+			router.push(`/search/${keyword}`)
 		}
 	}
 
 	return(
-			<header className="bg-cyan-900">
+			<header className="bg-color-accent">
 				<div className="flex justify-between md:flex-row flex-col md:items-center p-3">
-					<Link href="/" className="font-bold font-xl text-white">Xmod-Anime</Link>
+					<Link href="/" className="font-bold font-xl text-color-primary">Xmod-Anime</Link>
 					<div className="relative">
 						<input 
 						placeholder="Search Anime ..."

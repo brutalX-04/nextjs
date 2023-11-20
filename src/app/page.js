@@ -1,13 +1,12 @@
 import Animlist from "@/components/AnimList"
 import Header from "@/components/AnimList/Header"
 import AnimlistYou from "@/components/AnimList/Recommend"
+import { getResponseApi } from "./libs/libs-api"
 
 
 const Page = async () => {
-	const top = await fetch(`${process.env.NEXT_PUBLIC_API_BASH_URL}/top/anime?limit=12`)
-	const rec = await fetch(`${process.env.NEXT_PUBLIC_API_BASH_URL}/recommendations/anime?page=1`)
-	const TopAnime = await top.json()
-	const RecAnime = await rec.json()
+	const TopAnime = await getResponseApi("top/anime", "limit=12")
+	const RecAnime = await getResponseApi("recommendations/anime", "page=1")
   	return(
 		<>
 			<section>
@@ -15,7 +14,7 @@ const Page = async () => {
 				<Animlist api={TopAnime} />
 			</section>
 			<section>
-				<Header Title={"For You"} LinkHref={"/top"} TitleHref={"View all"} />
+				<Header Title={"For You"} LinkHref={"/top"} TitleHref={""} />
 				<AnimlistYou api={RecAnime} />
 			</section>
 		</>
